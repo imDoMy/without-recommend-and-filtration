@@ -50,7 +50,7 @@ if (this.props.em || this.props.emlog ) {
             <CardSection>
               <TouchableOpacity
                 style={styles.buttonStyle}
-                onPress={() => console.log() }
+                onPress={() => Actions.fav()}
                 >
                 <Text style={styles.textStyle}>المتاجر المفضلة</Text>
               </TouchableOpacity>
@@ -94,7 +94,7 @@ const Inf = this.props.Info
           <CardSection>
             <TouchableOpacity
               style={styles.buttonStyle}
-              onPress={() => console.log() }
+              onPress={() => Actions.fav()}
               >
               <Text style={styles.textStyle}> Favorite businesses</Text>
             </TouchableOpacity>
@@ -217,11 +217,6 @@ const MapStateTpProps = state => {
   const emlog = state.auth.emaillog;
   const language = state.language.Language;
   const Info = state.userInfo;
-console.log('Info');
-console.log(Info);
-console.log('Info');
-
-
   return { Info, em, emlog, language };
 };
 

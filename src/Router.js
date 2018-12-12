@@ -16,6 +16,8 @@ import UserProfile from './components/UserProfile';
 import UserReviews from './components/UserReviews';
 import SearchByName from './components/SearchByName';
 import SearchByCategory from './components/SearchByCategory';
+import FavoriteList from './components/FavoriteList';
+import FavBusiness from './components/FavBusiness';
 
 
 
@@ -69,6 +71,11 @@ render() {
         <Scene key='Profile' title='Profile' icon={TabIcon} modal={true}  >
         <Scene key='info' component={UserProfile} title='' />
         <Scene key='userreview' component={UserReviews} title='' />
+        <Scene key='fav' component={FavoriteList} title='' />
+        <Scene key='favinner' component={FavBusiness} title='' />
+
+
+
         </Scene>
 
       </Scene>

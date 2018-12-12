@@ -5,6 +5,7 @@ import { CardSection, Card, Button, Section, TextInputt, TextInputtE, Spinner } 
 import { emailChanged, passwordChanged, loginUser, emailChangedLog } from '../actions';
 
 class LoginForm extends Component {
+	state={ error: '' };
 	Language() {
 		if (this.props.language === 'Arabic'){
 			return(
@@ -30,6 +31,9 @@ class LoginForm extends Component {
 
 				<Text style={styles.errorTextStyle}>
 					{this.er()}
+				</Text>
+				<Text style={styles.errorTextStyle}>
+					{this.state.error}
 				</Text>
 
 				<Section>
@@ -62,6 +66,9 @@ class LoginForm extends Component {
 				<Text style={styles.errorTextStyle}>
 					{this.er()}
 				</Text>
+				<Text style={styles.errorTextStyle}>
+					{this.state.error}
+				</Text>
 
 				<Section>
 					{this.renderButton()}
@@ -72,21 +79,36 @@ class LoginForm extends Component {
 
 
 	er(){
-		if(this.props.error !== '')
+		if(this.props.error === undefined)
+		return
+		if(this.props.error !== ''){
+			console.log(this.props.error);
+
 		return ('wrong email or password ');
 	}
+	}
 	onEmailChange(text) {
+		this.setState({ error: '' });
 	    this.props.emailChangedLog(text);
 	  }
 
 	  onPasswordChange(text) {
+			this.setState({ error: '' });
 	    this.props.passwordChanged(text);
 	  }
 
 	  onButtonPress() {
 	    const { emaillog, password } = this.props;
 
+			if (emaillog === '' || password === '') {
+				if (this.props.language === 'Arabic') {
+					this.setState({ error: 'يجب عليك تعبئة جميع الخانات' });
+			} else {
+				this.setState({ error: 'you have to fill all the fields' });
+			}
+			} else {
 	    this.props.loginUser({ emaillog, password });
+		}
 	  }
 
 	  renderButton() {

@@ -121,12 +121,11 @@ this.props.onNameChange(text);
 
 		onButtonPress() {
 			const { email, password, fullname } = this.props;
-			if (fullname === '' || email === '' || password === '' ) {
+			if (fullname === '' || email === '' || password === '') {
 				if (this.props.language === 'Arabic') {
 					this.setState({ error: 'يجب عليك تعبئة جميع الخانات' });
 			} else {
 				this.setState({ error: 'you have to fill all the fields' });
-
 			}
 			} else {
 				this.props.RegisterUser({ email, password, fullname });

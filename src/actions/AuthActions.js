@@ -38,6 +38,12 @@ export const Logout = () => {
 	};
 };
 
+export const erase = () => {
+  return {
+    type: 'LOGOUT'
+  };
+};
+
 export const loginUser = ({ emaillog, password }) => {
   const email = emaillog;
 

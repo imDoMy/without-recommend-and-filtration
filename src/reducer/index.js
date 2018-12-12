@@ -7,6 +7,9 @@ import ReviewsReducer from './ReviewsReducer';
 import UserInfoReducer from './UserInfoReducer';
 import LanguageReducer from './LanguageReducer';
 import UserReviewReducer from './UserReviewReducer';
+import FavReducer from './FavReducer';
+import FavoriteFetchReducer from './FavoriteFetchReducer';
+import BusinessFetchFav from './BusinessFetchFav';
 
 
 export default combineReducers({
@@ -17,5 +20,8 @@ export default combineReducers({
   reviews: ReviewsReducer,
   userInfo: UserInfoReducer,
   language: LanguageReducer,
-  userReview: UserReviewReducer
+  userReview: UserReviewReducer,
+  favorite: FavReducer,
+  favoriteBusinesses: FavoriteFetchReducer,
+  fetchfavbusiness: BusinessFetchFav
 });

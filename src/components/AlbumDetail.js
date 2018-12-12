@@ -8,6 +8,7 @@ class AlbumDetail extends Component {
   render(){
   const { category, categoryE, restaurant_name, restaurant_nameE, rateing_image, image } = this.props.business;
 const business = this.props.business
+
   const {
     thumbnailStyle,
     headerContentStyle,

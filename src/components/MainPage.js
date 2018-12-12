@@ -13,10 +13,15 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Card, Button, Section } from './common';
-import { arabicLanguage, englishLanguage } from '../actions';
+import { arabicLanguage, englishLanguage, erase } from '../actions';
 
 
 class MainPage extends Component {
+  onButtonPress (){
+    this.props.erase();
+    Actions.Main();
+
+  }
 Lang(){
   if (this.props.language === 'Arabic') {
     return (
@@ -51,7 +56,7 @@ Lang(){
         </CardSection>
 
         <CardSection>
-          <TouchableOpacity onPress={() => Actions.Main()}>
+          <TouchableOpacity onPress={this.onButtonPress.bind(this)}>
           <Text>المتاجر </Text>
           </TouchableOpacity>
         </CardSection>
@@ -109,4 +114,4 @@ Lang(){
 const language = state.language.Language;
 return ({ language });
   };
-export default connect(MapStateTpProps, { arabicLanguage, englishLanguage })(MainPage);
+export default connect(MapStateTpProps, { arabicLanguage, englishLanguage, erase })(MainPage);

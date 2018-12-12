@@ -22,13 +22,7 @@ class AlbumList extends Component {
 
       this.createDataSource(nextProps);
     }
-    onAccept() {
-   Actions.Auth();
-}
 
-onDecline() {
-   this.setState({ showModal: false });
-}
 
     createDataSource({ businesses }) {
       const ds = new ListView.DataSource({

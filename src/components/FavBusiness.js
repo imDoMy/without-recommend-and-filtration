@@ -17,14 +17,18 @@ import _ from 'lodash';
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { CardSection, Card, Button, Spinner } from "./common";
-import { BusinessFetch, AddBusinessToFav, FavoriteBusinessesFetch, RemoveBusinessfromFav } from "../actions";
+import { BusinessFetch, AddBusinessToFav, FavoriteBusinessesFetch, RemoveBusinessfromFav, BusinessFetchFav } from "../actions";
 
-class Business extends Component {
+class FavBusiness extends Component {
 componentWillMount() {
 
   const { uid } = this.props.business;
+  console.log('this.props.initialPosition');
+  console.log(uid);
+  console.log('this.props.initialPosition');
+
   this.props.FavoriteBusinessesFetch();
-  this.props.BusinessFetch({ uid });
+  this.props.BusinessFetchFav({ uid });
 
 }
 favButton(){
@@ -115,10 +119,14 @@ check(title, uidd) {
      return Actions.map({ Markers: [this.props.business] })
      if(title === 'fav') {
        const { uid, category, categoryE, longitude, latitude, restaurant_name, restaurant_nameE, rateing_image, image, description, descriptionE, Contact_information } = this.props.business;
+       console.log('ADDTOFAV');
+       console.log(uid);
+       console.log('ADDTOFAV');
 
        return this.props.AddBusinessToFav({ uid, category, restaurant_name, restaurant_nameE, rateing_image, image, description, descriptionE, Contact_information, categoryE, longitude, latitude })
      }
      if(title === 'remove') {
+
        return this.props.RemoveBusinessfromFav({ uid: uidd })
      }
   }
@@ -372,15 +380,17 @@ const MapStateTpProps = (state, props) => {
   const emaillog = state.auth.emaillog;
   const language = state.language.Language;
   const loading = state.favorite.loading;
-  const { category, restaurant_name, restaurant_nameE, rateing_image, image, description, descriptionE, Contact_information, uid } = state.business;
-const Marker = state.business;
+  const { category, restaurant_name, restaurant_nameE, rateing_image, image, description, descriptionE, Contact_information, uid } = state.fetchfavbusiness;
+const Marker = state.fetchfavbusiness;
 const FavFetch = _.map(state.favoriteBusinesses, (val, uidd) => {
   return { ...val, uidd };
 });
-
+console.log('FavFetch');
+console.log(FavFetch);
+console.log('FavFetch');
 
   return { restaurant_nameE, Marker, descriptionE, language, emaillog, category, restaurant_name, rateing_image, image, description, Contact_information, uid, em, loading, FavFetch };
 };
 
 
-export default connect(MapStateTpProps, { BusinessFetch, AddBusinessToFav, FavoriteBusinessesFetch, RemoveBusinessfromFav })(Business);
+export default connect(MapStateTpProps, { BusinessFetchFav, BusinessFetch, AddBusinessToFav, FavoriteBusinessesFetch, RemoveBusinessfromFav })(FavBusiness);
